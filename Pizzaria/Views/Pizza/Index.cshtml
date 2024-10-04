@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PizzaModel>
+
+<div class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <a class="btn btn-success" asp-controller="Pizza" asp-action="Cadastrar">Cadastrar pizza</a>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-0">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var pizza in Model)
+                {
+                    <div class="card mx-3 my-3 p-2" style="width: 12rem">
+                        @if (pizza.Capa != null)
+                        {
+                            <img src="/assets/@pizza.Capa" class="card-img-top" style="width: 175px; height: 158px"/>
+                        }
+                        else
+                        {
+                            <img src="..." class="card-img-top"/>
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@pizza.Sabor</h5>
+                        </div>
+                        <div class="card-body">
+                            <a class="btn btn-warning w-100" asp-controller="Pizza" asp-action="Editar" asp-route-id="@pizza.Id">Editar</a>
+                            <a class="btn btn-danger w-100" asp-controller="Pizza" asp-action="Remover" asp-route-id="@pizza.Id">Remover</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
